@@ -19,6 +19,11 @@ From PIP:
 ```bash
 To-Do
 ```
+
+From TestPyPi:
+```bash
+pip install -i https://test.pypi.org/simple/ pyFolderOrganizer
+```
 #
 ## Usage
 ### Basic Example
