@@ -3,12 +3,15 @@ from setuptools import setup
 
 setup(
     name='pyFolderOrganizer',
-    version= '0.0.1',
+    version= '0.0.1a',
     description='Python package to organize a folder in sub-directories based on file types.',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
     url="https://github.com/kotsiossp97/pyFolderOrganizer",
-    project_urls={ 'Bug Tracker': 'https://github.com/kotsiossp97/pyFolderOrganizer/issues' },
+    project_urls={  'Bug Tracker': 'https://github.com/kotsiossp97/pyFolderOrganizer/issues',
+                    'Documentation': "https://pyfolderorganizer.readthedocs.io/en/latest/index.html",
+                    "Source Code": "https://github.com/kotsiossp97/pyFolderOrganizer"
+    },
     author="Konstantinos Andreou",
     author_email="kotsiossp@gmail.com",
     license='MIT',
@@ -23,3 +26,7 @@ setup(
     install_requires=["win11toast", "watchdog"],
     py_modules=['pyFolderOrganizer']
 )
+
+
+#python -m build
+#python -m twine upload dist/*
