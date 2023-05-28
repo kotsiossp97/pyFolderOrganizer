@@ -17,13 +17,9 @@ pip install git+https://github.com/kotsiossp97/pyFolderOrganizer.git@latest
 From PIP:
 
 ```bash
-To-Do
+pip install pyFolderOrganizer
 ```
 
-From TestPyPi:
-```bash
-pip install -i https://test.pypi.org/simple/ pyFolderOrganizer
-```
 #
 ## Usage
 ### Basic Example

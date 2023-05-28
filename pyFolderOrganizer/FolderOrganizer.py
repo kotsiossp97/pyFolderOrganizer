@@ -9,11 +9,14 @@ class FolderOrganizer:
     def __init__(self, directory:str, observe:bool=False, printing:bool=True, notifications:bool=False):
         """Organizes the files in the given folder in sub folders by file types.
 
-        Args:
-            directory (str): Path of the folder to be organized, can be full or relative path.
-            observe (bool, optional): Tracks the folder for changes and automatically organizes files. Defaults to False.
-            printing (bool, optional): If true, prints messages to the console. Defaults to True.
-            notifications (bool, optional): If true, creates windows toast messages. Defaults to False.
+        :param directory: Path of the folder to be organized, can be full or relative path.
+        :type directory: str
+        :param observe: Tracks the folder for changes and automatically organizes files. Defaults to False.
+        :type observe: bool
+        :param printing: If true, prints messages to the console. Defaults to True.
+        :type printing: bool
+        :param notifications: If true, creates windows toast messages. Defaults to False.
+        :type notifications: bool
         """
         
         # private class properties
@@ -77,32 +80,31 @@ class FolderOrganizer:
         self.observer.start()
         
         self.__notify(toastTitle, toastMsg, self.openFolder)
-
         
-    def __onFileMoved(self, filePath:str):
-        toastTitle = "pyFolderOrganizer"
-        fileName = ""
-        toastMsg   = f"File {fileName} was organized."
-        self.__notify(toastTitle, toastMsg)
-    
     def __scanForFiles(self):
         for filename in os.listdir(self.directory):
             print(filename)
+            
     # Property Class Methods
     @property
     def directory(self):
+        """Get or Set the folder directory to be organized. Any existing path will be accepted.
+        """
         return self._directory
     
     @property
     def observe(self):
+        """Enable or disable observer mode, boolean value is accepted."""
         return self._observe
     
     @property
     def printing(self):
+        """Enable or disable console printing, boolean value is accepted."""
         return self._printing
     
     @property
     def notifications(self):
+        """Enable or disable windows notifications, boolean value is accepted."""
         return self._notifications
 
     @property
@@ -137,21 +139,3 @@ class FolderOrganizer:
             self.__observer = Observer()
         else:
             self.__observer = None
-    # Static Class Methods
-    @staticmethod
-    def isFileMovable(filePath):
-        movable = False
-        if(os.path.exists(filePath)):
-            try:
-                f = open(filePath,'a',8)
-                movable = True
-            except:
-                movable = False
-        else:
-            raise Exception("File does not exist.")
-        return movable
-
-    @staticmethod
-    def waitForFileMovable(filePath):
-        while( not FolderOrganizer.isFileMovable(filePath)):
-            time.sleep(5)

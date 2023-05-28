@@ -1,5 +1,5 @@
 from watchdog.events import FileSystemEventHandler
-import os, subprocess
+import os, subprocess, time
 from .FileExtensions import FileExtensions
 
 class FileHandler(FileSystemEventHandler):
@@ -21,10 +21,9 @@ class FileHandler(FileSystemEventHandler):
             self.__createFolder(newFolder)
             newFilePath = self.__getNewFilePath(newFolder, fileName)
             try:
+                FileHandler.waitForFileMovable(filePath)
                 os.rename(filePath, newFilePath)
-                msg = f"Successfully organized file {fileName} in folder {newFolder}."
-                openFilePath = lambda: FileHandler.openDir(os.path.dirname(newFilePath))
-                self.__notify("pyFolderOrganizer", msg, openFilePath)
+                self.__onFileMoved(fileName, newFolder, newFilePath)
             except Exception as e:
                 print(e)
                 
@@ -49,9 +48,34 @@ class FileHandler(FileSystemEventHandler):
             
         return newPath
     
+    def __onFileMoved(self, fileName:str, newFolder:str, newFilePath:str):
+        msg = f"Successfully organized file {fileName} in folder {newFolder}."
+        openFilePath = lambda: FileHandler.openDir(os.path.dirname(newFilePath))
+        self.__notify("pyFolderOrganizer", msg, openFilePath)
+        
     @staticmethod
     def openDir(directory:str):
         FILEBROWSER_PATH = os.path.join(os.getenv('WINDIR'), 'explorer.exe')
 
         if os.path.exists(directory):
             subprocess.run([FILEBROWSER_PATH, directory])
+    
+    # Static Class Methods
+    @staticmethod
+    def isFileMovable(filePath):
+        movable = False
+        if(os.path.exists(filePath)):
+            try:
+                f = open(filePath,'a',8)
+                if f:
+                    movable = True
+            except:
+                movable = False
+        else:
+            raise Exception("File does not exist.")
+        return movable
+
+    @staticmethod
+    def waitForFileMovable(filePath):
+        while( not FileHandler.isFileMovable(filePath)):
+            time.sleep(5)
