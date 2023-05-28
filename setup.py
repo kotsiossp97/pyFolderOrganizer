@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='pyFolderOrganizer',
-    version= '0.0.1a',
+    version= '0.0.1b',
     description='Python package to organize a folder in sub-directories based on file types.',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
