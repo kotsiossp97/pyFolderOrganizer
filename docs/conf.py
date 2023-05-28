@@ -17,7 +17,7 @@ author = 'Konstantinos Andreou'
 
 extensions = [
     "sphinx.ext.intersphinx",
-    "sphinx.ext.autodoc"
+    "sphinx.ext.autodoc",
     "sphinx.ext.todo",
 ]
 
