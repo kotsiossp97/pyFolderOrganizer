@@ -3,7 +3,7 @@ Module pyFolderOrganizer.FolderOrganizer
 
 .. automodule:: pyFolderOrganizer.FolderOrganizer
 
-*This module provide the FolderOrganizer class used to deal with modbus server.*
+*This module provide the FolderOrganizer class that is responsible for organizing a directory*
 
 
 class FolderOrganizer
