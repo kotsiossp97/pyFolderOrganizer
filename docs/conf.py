@@ -1,41 +1,39 @@
-"""Document configuration."""
+# Configuration file for the Sphinx documentation builder.
 #
-# PyModbus documentation build configuration file,
-#
-# This file is execfile()d with the current directory set to its
-# containing dir.
-#
-# pylint: skip-file
-import os
-import sys
+# For the full list of built-in configuration values, see the documentation:
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 
-parent_dir = os.path.abspath(os.pardir)
-sys.path.insert(0, parent_dir)
-sys.path.append(os.path.join(parent_dir, "examples"))
-github_doc_root = "https://github.com/kotsiossp97/pyFolderOrganizer/tree/master/docs/"
-
-# -- General configuration ------------------------------------------------
-extensions = ["sphinx.ext.autodoc", "sphinx_rtd_theme", "sphinx.ext.autosectionlabel"]
-source_suffix = [".rst"]
-master_doc = "index"
-project = "pyFolderOrganizer"
-copyright = "See license"
-author = "Konstantinos Andreou"
-version = "0.0.1"
-release = "0.0.1"
-language = "en"
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-pygments_style = "sphinx"
-todo_include_todos = False
+# -- Project information --
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 
-# -- Options for HTML output ----------------------------------------------
-html_theme = "sphinx_rtd_theme"
-html_static_path = []
-html_sidebars = {
-    "**": [
-        "relations.html",  # needs "show_related": True theme option to display
-        "searchbox.html",
-    ]
-}
+project = 'pyFolderOrganizer'
+copyright = '2023, Konstantinos Andreou'
+author = 'Konstantinos Andreou'
+
+# -- General configuration --
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+
+extensions = [
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.todo",
+]
+
+# templates_path = ['_templates']
+exclude_patterns = ['.venv', '_build', 'Thumbs.db', '.DS_Store']
+
+
+# -- Options for HTML output --
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+
+html_theme = 'sphinx_rtd_theme'
+html_static_path = ['_static']
+
+# -- Options for intersphinx extension --
+# https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html#configuration
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
+
+# -- Options for todo extension --
+# https://www.sphinx-doc.org/en/master/usage/extensions/todo.html#configuration
+todo_include_todos = True
