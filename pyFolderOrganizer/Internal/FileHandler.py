@@ -1,5 +1,5 @@
 from watchdog.events import FileSystemEventHandler
-import os, subprocess, time
+import os, sys, subprocess, time
 from .FileExtensions import FileExtensions
 
 class FileHandler(FileSystemEventHandler):
@@ -55,10 +55,14 @@ class FileHandler(FileSystemEventHandler):
         
     @staticmethod
     def openDir(directory:str):
-        FILEBROWSER_PATH = os.path.join(os.getenv('WINDIR'), 'explorer.exe')
 
         if os.path.exists(directory):
-            subprocess.run([FILEBROWSER_PATH, directory])
+            if sys.platform == 'win32':
+                opener = ['explorer']
+            else:
+                opener = ['open', '-R']
+                
+            subprocess.run(opener + [directory])
     
     # Static Class Methods
     @staticmethod

@@ -1,10 +1,9 @@
-import os, time, subprocess, threading
-from win11toast import notify
+import os, sys, time, subprocess, threading
+from win11toast import notify, toast
 from watchdog.observers import Observer
 from .Internal.FileHandler import FileHandler
 
 class FolderOrganizer:
-    FILEBROWSER_PATH = os.path.join(os.getenv('WINDIR'), 'explorer.exe')
     
     def __init__(self, directory:str, observe:bool=False, printing:bool=True, notifications:bool=False):
         """Organizes the files in the given folder in sub folders by file types.
@@ -25,6 +24,7 @@ class FolderOrganizer:
         self._printing = True
         self._notifications = False
         self.__observer = None
+        
         # public properties
         self.directory = directory
         self.observe = observe
@@ -47,12 +47,18 @@ class FolderOrganizer:
     def openFolder(self):
         """Opens the folder that is organized in a new Explorer window.
         """
-        subprocess.run([FolderOrganizer.FILEBROWSER_PATH, self.directory])
-        
+        opener = ['explorer']
+        if (sys.platform != 'win32'):
+            opener = ['open']
+            
+        subprocess.run(opener + [self.directory])
+    
     # Private Class Methods
     def __notify(self, title:str, message:str, callbackOnClick=None):
         if(self.notifications):
-            notify(title, message, on_click=lambda x: callbackOnClick())
+            # notify(title, message, on_click=callbackOnClick)
+            toast(title, message, on_click=lambda x: callbackOnClick())
+            
             # self.__toaster.show_toast(title, message, duration=3, threaded=True, callback_on_click=callbackOnClick)
         elif self.printing:
             print(message)
@@ -81,10 +87,7 @@ class FolderOrganizer:
         
         self.__notify(toastTitle, toastMsg, self.openFolder)
         
-    def __scanForFiles(self):
-        for filename in os.listdir(self.directory):
-            print(filename)
-            
+
     # Property Class Methods
     @property
     def directory(self):
