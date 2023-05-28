@@ -33,6 +33,7 @@ exclude_patterns = ['.venv', '_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+autodoc_mock_imports = ["win11toast"]
 
 # -- Options for intersphinx extension --
 # https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html#configuration
