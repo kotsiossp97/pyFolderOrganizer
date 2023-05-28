@@ -9,13 +9,11 @@
 import os
 import sys
 
-from pyFolderOrganizer import VERSION as pyFOrg_version
-
 
 parent_dir = os.path.abspath(os.pardir)
 sys.path.insert(0, parent_dir)
 sys.path.append(os.path.join(parent_dir, "examples"))
-github_doc_root = "https://github.com/kotsiossp97/pyFolderOrganizer/tree/master/doc/"
+github_doc_root = "https://github.com/kotsiossp97/pyFolderOrganizer/tree/master/docs/"
 
 # -- General configuration ------------------------------------------------
 extensions = ["sphinx.ext.autodoc", "sphinx_rtd_theme", "sphinx.ext.autosectionlabel"]
@@ -24,8 +22,8 @@ master_doc = "index"
 project = "pyFolderOrganizer"
 copyright = "See license"
 author = "Konstantinos Andreou"
-version = pyFOrg_version
-release = pyFOrg_version
+version = "0.0.1"
+release = "0.0.1"
 language = "en"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 pygments_style = "sphinx"
