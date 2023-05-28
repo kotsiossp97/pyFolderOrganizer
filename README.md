@@ -1,9 +1,11 @@
 # pyFolderOrganizer
+ ![Read the docs][docs-shield] ![PyPI Downloads][pypiDown-shield]  ![Last Commit][lastCommit-shield]
+
  Python package to organize a folder in sub-directories based on file types.
 
 #
 ## Documentation
-To-Do
+View documentation on [Readthedocs](https://pyfolderorganizer.readthedocs.io/en/latest/index.html)
 #
 ## Setup
 You can install this package from:
@@ -66,3 +68,7 @@ These are the folders that will contain the files with the provided extensions. 
 
 ### Add custom folder/extension
 To-do
+
+[docs-shield]:https://img.shields.io/readthedocs/pyfolderorganizer?style=for-the-badge
+[pypiDown-shield]:https://img.shields.io/pypi/dw/pyfolderorganizer?style=for-the-badge
+[lastCommit-shield]: https://img.shields.io/github/last-commit/kotsiossp97/pyFolderOrganizer?style=for-the-badge
